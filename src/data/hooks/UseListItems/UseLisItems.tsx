@@ -2,10 +2,12 @@ import { useState, useEffect } from 'react';
 import { ItemType } from "../../../data/@types/Item/Item.type";
 import { handleItemCheck } from '../../services/ItemCheck/Item.service';
 import { handleDeleteFilteredItem } from '../../services/DeleteItems/DeleteItems.service';
+import { handleEditItem } from '../EditItem/EditItem.service'
+
 
 export const useListItems = () => {
     const [items, setItems] = useState<ItemType[]>([]);
- 
+
     useEffect(() => {
         const storedItems = localStorage.getItem("ListItems");
         if (storedItems) {
@@ -16,7 +18,7 @@ export const useListItems = () => {
             })));
         }
     }, []);
- 
+
     const handleCheck = (index: number, isChecked: boolean) => {
         setItems(prevItems => {
             const updatedItems = [...prevItems];
@@ -25,15 +27,15 @@ export const useListItems = () => {
         });
         handleItemCheck(index, isChecked, items, setItems);
     };
- 
+
     const handleDelete = (index: number) => {
         handleDeleteFilteredItem(index, items, setItems);
     };
- 
+
     const handleEdit = (index: number, newItem: ItemType) => {  
-        handleEditItem(index, newItem, items, setItems);
+        handleEditItem(index, newItem, items, setItems); 
     };
- 
+
     return {
         items,
         handleCheck,

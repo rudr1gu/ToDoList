@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { ItemType } from "../../../data/@types/Item/Item.type";
+import { ItemType } from "../../@types/Item/Item.type";
 import { useCheckType } from '../../@types/useCheck/useCheck.type';
  
  
